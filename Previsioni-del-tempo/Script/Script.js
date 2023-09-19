@@ -1,0 +1,21 @@
+let latitudine = 41.9027835
+let longitudine = 12.4963655
+
+
+
+navigator.geolocation.getCurrentPosition(function(event){
+     console.log(event);
+     latitudine = event.coords.latitude;
+     longitudine = event.coords.longitude;
+     createwMap()
+}, function(event){
+     createwMap()
+})
+
+function createwMap(){
+     var map = L.map('map').setView([latitudine, longitudine], 13);
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+}
